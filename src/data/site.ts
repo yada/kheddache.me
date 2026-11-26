@@ -27,12 +27,12 @@ export const socials = [
 export const projects = [
   {
     name: 'reShapr',
-    logo: '/img/logos/reshapr.png',
-    logoW: 417,
-    logoH: 102,
+    logo: '/img/logos/reshapr-aligned.png',
+    logoW: 378,
+    logoH: 120,
     role: 'Co-founder and core maintainer',
-    tagline: 'Turn your APIs AI-Native, without rebuilding them.',
-    text: 'Open source MCP runtime that turns your existing APIs into governed MCP tools.',
+    tagline: 'Turn your APIs AI-Native.',
+    text: 'Open source MCP runtime that turns your existing APIs into governed MCP tools, without rebuilding them.',
     links: [
       { label: 'reshapr.io', url: 'https://reshapr.io' },
       { label: 'GitHub', url: 'https://github.com/reshaprio' },
@@ -40,9 +40,9 @@ export const projects = [
   },
   {
     name: 'Microcks',
-    logo: '/img/logos/microcks.png',
-    logoW: 1036,
-    logoH: 332,
+    logo: '/img/logos/microcks-aligned.png',
+    logoW: 467,
+    logoH: 120,
     role: 'Co-founder and core maintainer',
     tagline: 'CNCF Incubating project.',
     text: 'API mocking and contract testing: OpenAPI, AsyncAPI, gRPC and GraphQL contracts become live mocks and conformance tests, from a laptop to Kubernetes.',

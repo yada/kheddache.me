@@ -110,7 +110,6 @@ section { padding: 56px 0 8px; }
 .project { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
 .project .logo-box { height: 56px; display: flex; align-items: center; }
 .project .logo { height: 100%; width: auto; }
-.project .logo.microcks { height: 120%; }
 .project .role { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin: 0; }
 .project .tagline { color: var(--white); font-weight: 600; font-size: 19px; margin: 0; }
 .project p { margin: 0; }
