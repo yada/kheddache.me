@@ -30,7 +30,7 @@ export const projects = [
     logo: '/img/logos/reshapr.png',
     logoW: 417,
     logoH: 102,
-    role: 'Co-founder',
+    role: 'Co-founder and core maintainer',
     tagline: 'Turn your APIs AI-Native, without rebuilding them.',
     text: 'Open source MCP runtime that turns your existing APIs into governed MCP tools.',
     links: [
@@ -40,8 +40,8 @@ export const projects = [
   },
   {
     name: 'Microcks',
-    logo: '/img/logos/microcks.svg',
-    logoW: 1018,
+    logo: '/img/logos/microcks.png',
+    logoW: 1036,
     logoH: 332,
     role: 'Co-founder and core maintainer',
     tagline: 'CNCF Incubating project.',

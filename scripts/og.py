@@ -17,10 +17,10 @@ def data(p, mime):
 hero = data(IMG / "hero.jpg", "image/jpeg")
 avatar = data(IMG / "avatar.jpg", "image/jpeg")
 reshapr = data(IMG / "logos/reshapr.png", "image/png")
-microcks = data(IMG / "logos/microcks.svg", "image/svg+xml")
+microcks = data(IMG / "logos/microcks.png", "image/png")
 badge = data(IMG / "logos/cncf-ambassador.svg", "image/svg+xml")
 
-# hero is 2000x793: scale to height 630 -> width 1589, centre crop
+# hero is 2400x800: scale to height 630 -> width 1890, centre crop
 svg = f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Inter">
   <defs>
     <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
@@ -31,7 +31,7 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
     <clipPath id="round"><circle cx="150" cy="190" r="92"/></clipPath>
   </defs>
   <rect width="{W}" height="{H}" fill="#121417"/>
-  <image href="{hero}" x="-195" y="0" width="1589" height="630" preserveAspectRatio="xMidYMid slice"/>
+  <image href="{hero}" x="-345" y="0" width="1890" height="630" preserveAspectRatio="xMidYMid slice"/>
   <rect width="{W}" height="{H}" fill="url(#fade)"/>
   <rect x="0" y="0" width="10" height="{H}" fill="#F5A524"/>
   <circle cx="150" cy="190" r="98" fill="#121417"/>
@@ -41,7 +41,7 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
   <text x="60" y="420" fill="#C9CCD1" font-size="27" font-weight="500">Co-founder of reShapr &amp; Microcks · <tspan fill="#F5A524" font-weight="600">CNCF Ambassador</tspan></text>
   <image href="{reshapr}" x="60" y="490" width="{round(56*417/102)}" height="56"/>
   <rect x="{60 + round(56*417/102) + 28}" y="490" width="2" height="56" fill="#FFFFFF" fill-opacity="0.35"/>
-  <image href="{microcks}" x="{60 + round(56*417/102) + 58}" y="486" width="{round(64*1017.91/331.5)}" height="64"/>
+  <image href="{microcks}" x="{60 + round(56*417/102) + 58}" y="486" width="{round(64*1036/332)}" height="64"/>
   <image href="{badge}" x="1010" y="468" width="{round(84*315.45/243.07)}" height="84"/>
   <text x="1140" y="60" text-anchor="end" fill="#F2F1EE" font-size="26" font-family="JetBrains Mono, Menlo" font-weight="500">kheddache.me</text>
 </svg>"""
