@@ -1,0 +1,297 @@
+---
+import Base from '../layouts/Base.astro';
+import { icons } from '../data/icons';
+import {
+  person, socials, projects, upcoming, talks, earlierTalks, badges, courses, posts, allPosts,
+} from '../data/site';
+
+const today = new Date().toISOString().slice(0, 10);
+const nextEvents = upcoming.filter((e) => e.end >= today);
+
+const fmt = (d: string) =>
+  new Date(d + 'T12:00:00Z').toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+const yt = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+const linkedin = socials.find((s) => s.id === 'linkedin')!;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  url: 'https://kheddache.me',
+  image: 'https://kheddache.me/press/yacine-kheddache-headshot.jpg',
+  jobTitle: 'Co-founder of reShapr and Microcks',
+  description: person.shortBio,
+  sameAs: socials.map((s) => s.url),
+};
+---
+<Base
+  title="Yacine Kheddache: reShapr, Microcks, CNCF Ambassador"
+  description={person.shortBio}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="/favicon.svg" alt="" width="28" height="28" />Yacine Kheddache</a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#talks">Talks</a>
+        <a href="#recognition">Recognition</a>
+        <a href="#writing">Writing</a>
+        <a href="#press">Press kit</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero" id="top">
+      <div class="hero-photo" role="img" aria-label="Snowy Alps ridges under a deep blue sky, seen from the Dôme des Glaciers summit"></div>
+      <div class="wrap hero-body">
+        <img class="avatar" src="/img/avatar.jpg" alt="Yacine Kheddache" width="152" height="152" />
+        <div>
+          <h1>{person.name}</h1>
+          <p class="title">
+            Co-founder of <strong>reShapr</strong> (open source MCP runtime) &amp; <strong>Microcks</strong> (CNCF
+            Incubating, API mocking and testing) · <span class="amber">CNCF Ambassador</span>
+          </p>
+        </div>
+        <ul class="socials">
+          {socials.map((s) => (
+            <li>
+              <a href={s.url} rel={s.rel ? `${s.rel} noopener` : 'noopener'} target="_blank">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icons[s.id]} /></svg>
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><h2>About</h2></div>
+        {person.bio.map((p) => <p class="lead">{p}</p>)}
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head"><h2>Projects</h2></div>
+        <div class="projects">
+          {projects.map((p) => (
+            <article class="card project">
+              <img class={`logo ${p.name.toLowerCase()}`} src={p.logo} alt={p.name} width={Math.round((44 * p.logoW) / p.logoH)} height="44" />
+              <p class="role">{p.role}</p>
+              <p class="tagline">{p.tagline}</p>
+              <p>{p.text}</p>
+              <div class="links">
+                {p.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="card ambassador">
+          <img src="/img/logos/cncf-ambassador.svg" alt="CNCF Ambassador" width="92" height="71" />
+          <p>
+            <strong style="color: var(--white)">CNCF Ambassador</strong> for 2026-2028. I also review talks for
+            KubeCon + CloudNativeCon as a track chair and program committee member.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="talks">
+      <div class="wrap">
+        <div class="section-head"><h2>Talks and interviews</h2></div>
+
+        {nextEvents.length > 0 && (
+          <div class="upcoming">
+            {nextEvents.map((e) => (
+              <div class="card event">
+                <span class="tag">Upcoming</span>
+                <span class="when">{e.when}</span>
+                <a class="name" href={e.url} target="_blank" rel="noopener">{e.name} ↗</a>
+                <span>{e.where}. {e.what}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="talks">
+          {talks.map((t) => (
+            <article class="card talk">
+              {t.youtube && (
+                <a class="thumb" href={yt(t.youtube)} target="_blank" rel="noopener" aria-label={`Watch on YouTube: ${t.title}`}>
+                  <img src={`/img/talks/${t.youtube}.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" />
+                  <span class="play" aria-hidden="true"></span>
+                </a>
+              )}
+              <div class="talk-body">
+                <div class="meta">
+                  <span class="date">{fmt(t.date)}</span>
+                  {t.lang === 'fr' && <span class="tag" title="In French">FR</span>}
+                </div>
+                <h3 lang={t.lang}>
+                  <a href={t.youtube ? yt(t.youtube) : t.links?.[0]?.url} target="_blank" rel="noopener">{t.title}</a>
+                </h3>
+                <div class="meta">{t.where}</div>
+                {t.links && t.youtube && (
+                  <div class="extra">
+                    {t.links.map((l) => <a href={l.url} target="_blank" rel="noopener">Also on {l.label} ↗</a>)}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="card earlier">
+          <h3>Earlier</h3>
+          <ul>
+            {earlierTalks.map((t) => (
+              <li>
+                <span class="mono muted">{t.date.slice(0, 4)}</span> · <span class="tag" title="In French">FR</span>{' '}
+                <a href={t.links![0].url} target="_blank" rel="noopener" lang={t.lang}>{t.title}</a>
+                <span class="muted"> · {t.where}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="recognition">
+      <div class="wrap">
+        <div class="section-head"><h2>Recognition</h2></div>
+        <div class="badges">
+          {badges.map((b) => (
+            <a class="card badge" href={b.url} target="_blank" rel="noopener">
+              <img src={`/img/badges/${b.img}.png`} alt="" width="104" height="104" loading="lazy" />
+              <span>{b.name}</span>
+            </a>
+          ))}
+        </div>
+        <div class="courses">
+          {courses.map((c) => (
+            <a class="card course" href={c.url} target="_blank" rel="noopener">
+              <img src={`/img/badges/${c.img}.png`} alt="" width="44" height="44" loading="lazy" />
+              <span>{c.name}</span>
+            </a>
+          ))}
+        </div>
+        <p class="more"><a href={socials.find((s) => s.id === 'credly')!.url} target="_blank" rel="noopener">All badges on Credly ↗</a></p>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="wrap">
+        <div class="section-head"><h2>Writing</h2></div>
+        <ul class="posts">
+          {posts.map((p) => (
+            <li>
+              <span class="date">{fmt(p.date)}</span>
+              <span class="site">{p.site}</span>
+              <a href={p.url} target="_blank" rel="noopener">{p.title}</a>
+            </li>
+          ))}
+        </ul>
+        <p class="more">
+          {allPosts.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
+        </p>
+      </div>
+    </section>
+
+    <section id="press">
+      <div class="wrap">
+        <div class="section-head"><h2>Press kit</h2></div>
+        <p class="muted">For event organizers, CfP forms and articles. Use any of these as is.</p>
+        <div class="press">
+          <div>
+            <div class="card bio-box">
+              <header><h3>Short bio</h3><button class="copy" type="button" data-copy="bio-short">Copy</button></header>
+              <p id="bio-short">{person.shortBio}</p>
+            </div>
+            <div class="card bio-box">
+              <header><h3>Long bio</h3><button class="copy" type="button" data-copy="bio-long">Copy</button></header>
+              <div id="bio-long">{person.bio.map((p) => <p>{p}</p>)}</div>
+            </div>
+          </div>
+          <div class="card downloads">
+            <a class="dl" href="/press/yacine-kheddache-headshot.jpg" download>
+              <img src="/img/avatar.jpg" alt="" width="72" height="72" loading="lazy" />
+              <span>Headshot<small>JPG, 1000 × 1000</small></span>
+            </a>
+            <a class="dl" href="/press/yacine-kheddache-banner-1500x500.jpg" download>
+              <img class="wide" src="/press/yacine-kheddache-banner-1500x500.jpg" alt="" width="144" height="48" loading="lazy" />
+              <span>Banner<small>JPG, 1500 × 500</small></span>
+            </a>
+            <p class="form-note">Name: Yacine Kheddache. Handles: <span class="mono">@YadaYac</span> on X, <span class="mono">@kheddache.me</span> on Bluesky.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head"><h2>Contact</h2></div>
+        <div class="contact">
+          <div>
+            <p class="lead">Talk invitations, podcasts, Microcks or reShapr questions: send a message here or on LinkedIn.</p>
+            <a class="btn" href={linkedin.url} target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icons.linkedin} /></svg>
+              Message me on LinkedIn
+            </a>
+          </div>
+          <form class="card" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company-website">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off" /></label></p>
+            <div class="row">
+              <label>Name <input name="name" autocomplete="name" required maxlength="120" /></label>
+              <label>Email <input type="email" name="email" autocomplete="email" required maxlength="200" /></label>
+            </div>
+            <label>Topic
+              <select name="topic">
+                <option>Talk, podcast or CfP</option>
+                <option>reShapr</option>
+                <option>Microcks</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Message <textarea name="message" required maxlength="5000"></textarea></label>
+            <div><button class="btn" type="submit">Send</button></div>
+            <p class="form-note">Your message goes to my inbox only. Your email address is used to reply, nothing else.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} Yacine Kheddache</span>
+      <span>No cookies. <a href="https://github.com/yada/kheddache.me" target="_blank" rel="noopener">Source on GitHub</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const el = document.getElementById(btn.dataset.copy!);
+        if (!el) return;
+        const text = Array.from(el.querySelectorAll('p')).map((p) => p.textContent).join('\n\n') || el.textContent || '';
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          btn.textContent = 'Copied';
+        } catch {
+          btn.textContent = 'Select and copy';
+        }
+        setTimeout(() => (btn.textContent = 'Copy'), 2000);
+      });
+    });
+  </script>
+</Base>
