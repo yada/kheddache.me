@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "24"
 
-# www and the Netlify subdomain redirect to the apex
+# www redirects to the apex. The Netlify subdomain stays reachable on purpose (fallback; canonical tag points to kheddache.me)
 [[redirects]]
   from = "https://www.kheddache.me/*"
   to = "https://kheddache.me/:splat"
