@@ -197,11 +197,14 @@ export const posts = [
   { date: '2026-05-11', site: 'microcks.io', title: 'Microcks is Now a CNCF Incubating Project!', url: 'https://microcks.io/blog/microcks-incubating-cncf' },
   { date: '2026-03-01', site: 'reshapr.io', title: 'Why reShapr?', url: 'https://reshapr.io/blog/why-reshapr' },
   { date: '2026-01-07', site: 'microcks.io', title: 'Recap of an Incredible 2025, and Ready for 2026!', url: 'https://microcks.io/blog/recap-of-an-incredible-2025' },
+  { date: '2025-11-24', site: 'linkedin.com', title: 'Microcks Chronicles: Maintainers Week & KubeCon + CloudNativeCon NA 2025', url: 'https://www.linkedin.com/pulse/microcks-chronicles-maintainers-week-kubecon-na-2025-yacine-kheddache-tnwie/' },
+  { date: '2025-10-27', site: 'linkedin.com', title: 'Celebrating 10 Years of Microcks: A Journey of Vision, Friendship, and Open Source Spirit', url: 'https://www.linkedin.com/pulse/celebrating-10-years-microcks-journey-vision-open-source-kheddache-zopje/' },
 ];
 
 export const allPosts = [
   { label: 'All my posts on reshapr.io', url: 'https://reshapr.io/blog/authors/yacine' },
   { label: 'All my posts on microcks.io', url: 'https://microcks.io/blog/authors/yacine-kheddache' },
+  { label: 'All my articles on LinkedIn', url: 'https://www.linkedin.com/in/yacinekheddache/recent-activity/articles/' },
 ];
 
 // Visitor stats: GoatCounter site code (e.g. 'kheddache' for kheddache.goatcounter.com). Empty = no stats script.
