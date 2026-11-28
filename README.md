@@ -25,4 +25,4 @@ npm run build    # output in dist/
 Netlify builds `main` (`netlify.toml`) and gives a deploy preview for every pull request.
 Contact form: Netlify Forms (form `contact`, honeypot field), notifications set in the Netlify dashboard.
 Visitor stats: GoatCounter, site code `kheddache` (https://kheddache.goatcounter.com), set in `goatcounter` in `src/data/site.ts` (empty = no script; no cookies either way).
-For AI agents: `/llms.txt` and `/index.md` (Markdown copy of the page, built from `src/data/site.ts` by `src/lib/markdown.ts`); `Accept: text/markdown` on `/` returns the Markdown (Netlify Edge Function `netlify/edge-functions/markdown.ts`). Check with `npx afdocs check https://kheddache.me/ --sampling none` (one-page site: the default sampling caps the score at 59).
+For AI agents: `/llms.txt`, `/sitemap.xml` and `/index.md` (Markdown copy of the page, built from `src/data/site.ts` by `src/lib/markdown.ts`); `Accept: text/markdown` on `/` returns the Markdown (Netlify Edge Function `netlify/edge-functions/markdown.ts`). Check with `npx afdocs check https://kheddache.me/ --sampling none` (one-page site: the default sampling caps the score at 59).
