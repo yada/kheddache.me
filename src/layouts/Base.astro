@@ -23,6 +23,7 @@ const ogImage = new URL('/og.jpg', Astro.site).href;
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="alternate" type="text/markdown" href="/index.md" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <meta name="theme-color" content="#121417" />
     {noindex && <meta name="robots" content="noindex" />}
@@ -45,6 +46,7 @@ const ogImage = new URL('/og.jpg', Astro.site).href;
     )}
   </head>
   <body>
+    <p class="sr-only">For AI agents: this page in Markdown is at <a href="/index.md">/index.md</a>, and the site index at <a href="/llms.txt">/llms.txt</a>.</p>
     <slot />
   </body>
 </html>

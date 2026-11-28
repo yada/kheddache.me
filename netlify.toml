@@ -24,3 +24,20 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Agent-friendly content: Markdown copy of the page and llms.txt (see netlify/edge-functions/markdown.ts)
+[[headers]]
+  for = "/"
+  [headers.values]
+    Vary = "Accept"
+    Link = "</index.md>; rel=\"alternate\"; type=\"text/markdown\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+
+[[headers]]
+  for = "/index.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
