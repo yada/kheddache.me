@@ -24,4 +24,4 @@ npm run build    # output in dist/
 
 Netlify builds `main` (`netlify.toml`) and gives a deploy preview for every pull request.
 Contact form: Netlify Forms (form `contact`, honeypot field), notifications set in the Netlify dashboard.
-Visitor stats: set `goatcounter` in `src/data/site.ts` (empty = no script, no cookies either way).
+Visitor stats: GoatCounter, site code `kheddache` (https://kheddache.goatcounter.com), set in `goatcounter` in `src/data/site.ts` (empty = no script; no cookies either way).
