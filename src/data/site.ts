@@ -208,4 +208,4 @@ export const allPosts = [
 ];
 
 // Visitor stats: GoatCounter site code (e.g. 'kheddache' for kheddache.goatcounter.com). Empty = no stats script.
-export const goatcounter = '';
+export const goatcounter = 'kheddache';
